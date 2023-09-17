@@ -1,22 +1,20 @@
-const express = require('express');
-const bodyParser = require('body-parser')
-const app = express();
-const port = process.env.PORT || 8000;
+const Port=3000
+const express=require('express')
+const bodyParser=require('body-parser')
+const app=express();
+app.use(bodyParser.urlencoded({extended:true}))
+// app.use(express.urlencoded())
+// app.use(express.json())
+const db=require('./config/mongoose');
 
-//mongoose
-const db = require('./config/mongoose');
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Routes
-app.use('/', require('./routes/index'));
+// this is the initiator of the routing to different requests of the user with diff. url's
+app.use('/',require('./routes/index'));
+   
 
 
-
-//Setup Server
-app.listen(port, function(err) {
-    if (err) {
-        console.log(`Error in running the server: ${err}`);
+app.listen(Port,function(err){
+    if(err){
+        console.log(err);
     }
-    console.log(`Server is running on port: ${port}`);
-});
+    console.log("server is runing ...",Port);
+})

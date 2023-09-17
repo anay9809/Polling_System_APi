@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO,{ useNewUrlParser: true,
-    useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://GarimaJain:kPKjUaqgs0b1ApUZ@cluster0.whteafy.mongodb.net/?retryWrites=true&w=majority');
 
-// Code for using the cloud mongodb atlas 
+// ----->this the code for using the cloud mongodb atlas ------------------------------------------------------- 
+// const url='mongodb+srv://GarimaJain:kPKjUaqgs0b1ApUZ@cluster0.whteafy.mongodb.net/?retryWrites=true&w=majority';
+const connectParams={
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+}
 
 
-// Code for manually using the mongodb of local system
+
+
 
 const db = mongoose.connection
 
 db.on('error', console.error.bind(console, 'error connecting to database'));
 
-db.once('open', () => {
+db.once('open', ()=>{
     console.log("successfully connected to database : mongoDB");
 });
 
